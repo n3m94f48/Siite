@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <title>Товар</title>
+
+        <script src="js/utils.js"></script>
+        <script src="js/functions.js"></script>
+        <script src="js/methods.js"></script>
+        <script src="js/item.js"></script>
+
+        <script>
+            if(!getCookie("sessionid")){
+                window.location.replace(window.location.origin + "/index.html");
+            }
+        </script>
+    </head>
+
+    <style>
+        body{
+            background-color: white;
+        }
+        main{
+            margin: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #maindiv{
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #review_textarea{
+            width: 23vw;
+            height: 50px;
+            border-radius: 0.5rem; 
+            resize: none;
+        }
+        #item-wrapper{
+            display: flex;
+            flex-direction: column;
+        }
+        #post_review_btn{
+            height: 20px;
+            background-color: rgb(227, 6, 19);; 
+            border: 1px solid black;
+            border-radius: 0.5rem;
+            padding: 10px; 
+            padding-bottom: 20px;
+            margin-left: 0.5rem;
+            font-size: 20px;
+            color: white;
+        }
+        .write-review-wraper{
+            display: flex;
+            margin-top: 1rem;
+        }
+        .details button{
+            height: 20px;
+            background-color: orange; 
+            border-radius: 0.5rem;
+            padding: 10px; 
+            padding-bottom: 20px;
+            margin-top: 40px;
+            margin-left: auto;
+            font-size: 20px;
+            color: white;
+        }
+    </style>
+
+    <body>
+        <script src="header.js"></script>
+        <main>
+            <div id="maindiv">
+                <h1 id="item_name"></h1>
+                <div id="item-wrapper">
+                </div>
+                <!-- <p></p> -->
+                <div id="reviews-wrapper">
+                    <div class="write-review-wraper">
+                        <textarea id="review_textarea" cols="30" rows="10"></textarea>
+                        <button id="post_review_btn">Отправить отзыв</button>
+                    </div>
+                    <div class="reviews-col">
+                        
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <title>Вход</title>
+        <script src="js/utils.js"></script>
+        <script>
+            if(getCookie("sessionid")){
+                window.location.replace(window.location.origin + "/catalog.html");
+            }
+        </script>       
+
+        <style>
+            body{
+                background-color: gray;
+                color: white;
+            }
+            .btn{
+                background-color: rgb(75, 75, 75);
+                color: white;
+                transition: none;
+                border: 1px solid black;
+            }
+            .btn:hover {
+                background-color: rgb(75, 75, 75);
+                border: 1px solid black;
+                color: white;
+            }
+            #rowbtn{
+                display: flex;
+                flex-direction: row;
+                margin: 0;
+            }
+            a{
+                font-size: 17px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+            <form class="d-flex flex-column justify-content-center needs-validation" id="form">
+                <div class="form-group" style="width: 250px;">
+                    <label for="username" style="text-align: center; margin-bottom: 15px;">Логин</label>
+                    <input type="text" class="form-control" id="username">
+                </div>
+                <div class="form-group" style="width: 250px;">
+                    <label for="password" style="text-align: center; margin-bottom: 15px;">Пароль</label>
+                    <input type="password" class="form-control" id="password">
+                </div>
+                <div class="form-group">
+                    <div class="form-feedback" id="feedback"></div>
+                </div>
+                <div class="form-group" id="rowbtn" style="width: 250px; justify-content: center; display: flex; flex-direction: column;">
+                    <button type="submit" class="btn" id="submit">
+                        <span class="spinner-border spinner-border-sm d-none"></span>
+                        <span>Войти</span>
+                    </button>
+                    <small class="form-text"><a href="/signin.html" class="btn" style="width: 250px; height: 38px;">Регистрация</a>
+                </div>
+            </form>
+        </div>
+        <script>
+            let form = document.getElementById("form");
+            let btn = document.getElementById("submit");
+            let [spinner, span] = btn.children;
+
+            let usr = document.getElementById("username");
+            let pwd = document.getElementById("password");
+            let fdb = document.getElementById("feedback");
+
+            function signin(evt){
+                evt.preventDefault();
+                evt.stopPropagation();
+
+                usr.classList.remove("is-invalid");
+                pwd.classList.remove("is-invalid");
+                fdb.classList.add("d-none");
+
+                btn.setAttribute("disabled", true);
+                spinner.classList.remove("d-none");
+                span.innerText = "Подождите...";
+
+                request("signin", {"username": usr.value, "password": pwd.value})
+                .then(
+                    (response) => {
+                        document.cookie = "sessionid=" + response.session_id + "; max-age=31536000";
+                        setTimeout(()=>{window.location.replace(window.location.origin + "/catalog.html");}, 200);
+                    },
+                    (err) => {
+                        btn.removeAttribute("disabled");
+                        spinner.classList.add("d-none");
+                        span.innerText = "Войти";
+
+                        fdb.innerText = err.description;
+                        fdb.classList.remove("d-none");
+                        usr.classList.add("is-invalid");
+                        pwd.classList.add("is-invalid");
+                        
+                    }
+                );
+            }
+
+            form.onsubmit = signin;
+        </script>
+    </body>
+</html>

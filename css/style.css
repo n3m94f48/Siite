@@ -1,0 +1,81 @@
+p,h1{
+    margin: 0 !important;
+}
+
+button{
+    all: unset;
+}
+
+img{
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+}
+
+div.img{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+span.spaced{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+span.spaced>*{
+    margin: 0 5px !important;
+}
+span.spaced>*:first-child{
+    margin-left: 0 !important;
+}
+span.spaced>*:last-child{
+    margin-right: 0 !important;
+}
+
+.clickable{
+    cursor: pointer;
+}
+
+header{
+    background-color: rgb(227, 6, 19);
+}
+
+header #logo{
+    margin: 0;
+    margin-left: 20px;
+    color: white;
+    font-size: 2em;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+header button.hdr-btn{
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0 0.7rem;
+}
+
+header>#account_popup{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 3.5rem;
+    right: 1rem;
+    border: 1px solid lightgray;
+    background-color: white;
+    padding: 1rem;
+}
+#form{
+    width: 210px;
+}
+.form-group{
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem 0;
+}
+
+.form-feedback{
+    display: none;
+    color: var(--bs-form-invalid-color);
+}
